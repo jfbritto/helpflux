@@ -15,7 +15,7 @@
 
 # next.js
 /.next/
-/out/
+# /out/ — mantido no git para deploy em hospedagem compartilhada
 
 # production
 /build
