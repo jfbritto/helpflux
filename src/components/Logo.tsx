@@ -6,16 +6,20 @@ interface LogoProps {
 }
 
 function LogoSymbol({
-  strokeColor = "#16A34A",
-  flowColor = "#22C55E",
+  strokeColor = "#059669",
+  flowColor = "#10B981",
+  flowLightColor = "#34D399",
   accentColor = "#F59E0B",
-  flowOpacity = 0.6,
+  dotColor = "#10B981",
+  dotOpacity = 0.3,
   size = 36,
 }: {
   strokeColor?: string;
   flowColor?: string;
+  flowLightColor?: string;
   accentColor?: string;
-  flowOpacity?: number;
+  dotColor?: string;
+  dotOpacity?: number;
   size?: number;
 }) {
   return (
@@ -26,55 +30,60 @@ function LogoSymbol({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Left pillar - two segments */}
-      <line x1="10" y1="6" x2="10" y2="24" stroke={strokeColor} strokeWidth="3" strokeLinecap="round" />
-      <line x1="10" y1="32" x2="12" y2="58" stroke={strokeColor} strokeWidth="3" strokeLinecap="round" />
-
-      {/* Right pillar - two segments */}
-      <line x1="54" y1="6" x2="54" y2="24" stroke={strokeColor} strokeWidth="3" strokeLinecap="round" />
-      <line x1="54" y1="32" x2="52" y2="58" stroke={strokeColor} strokeWidth="3" strokeLinecap="round" />
-
-      {/* Crossbar - circuit style angular path */}
+      {/* Left pillar - organic flowing curve */}
       <path
-        d="M10,28 L18,24 L46,24 L54,28"
-        stroke={accentColor}
-        strokeWidth="2.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M18,6 C18,6 16,16 17,28 C17.5,34 16,44 18,58"
+        stroke={strokeColor}
+        strokeWidth="4"
         fill="none"
+        strokeLinecap="round"
       />
 
-      {/* Secondary flow path - curved */}
+      {/* Right pillar - organic flowing curve */}
       <path
-        d="M10,36 Q32,44 54,36"
+        d="M46,6 C46,6 48,16 47,28 C46.5,34 48,44 46,58"
+        stroke={strokeColor}
+        strokeWidth="4"
+        fill="none"
+        strokeLinecap="round"
+      />
+
+      {/* Cross flow - the connection */}
+      <path
+        d="M19,30 C24,26 28,25 32,25 C36,25 40,26 45,30"
         stroke={flowColor}
-        strokeWidth="2"
-        strokeLinecap="round"
+        strokeWidth="3.5"
         fill="none"
-        opacity={flowOpacity}
+        strokeLinecap="round"
       />
 
-      {/* Data flow dots along pillars */}
-      <circle cx="10" cy="14" r="1.2" fill={strokeColor} opacity={0.35} />
-      <circle cx="54" cy="16" r="1.2" fill={strokeColor} opacity={0.35} />
-      <circle cx="12" cy="50" r="1.2" fill={strokeColor} opacity={0.35} />
-      <circle cx="52" cy="48" r="1.2" fill={strokeColor} opacity={0.35} />
+      {/* Secondary flow - lower, subtle */}
+      <path
+        d="M20,38 Q32,44 44,38"
+        stroke={flowLightColor}
+        strokeWidth="2"
+        fill="none"
+        strokeLinecap="round"
+        opacity={0.5}
+      />
 
-      {/* Connection nodes at junctions */}
-      <circle cx="10" cy="28" r="2.8" fill={accentColor} />
-      <circle cx="54" cy="28" r="2.8" fill={accentColor} />
+      {/* Connection nodes */}
+      <circle cx={19} cy={30} r={3.5} fill={accentColor} />
+      <circle cx={45} cy={30} r={3.5} fill={accentColor} />
 
-      {/* Center node - the "help" spark */}
-      <circle cx="32" cy="24" r="3.5" fill={accentColor} />
-      <circle cx="32" cy="24" r="1.6" fill="white" opacity={0.8} />
+      {/* Center spark */}
+      <circle cx={32} cy={25} r={4.5} fill={accentColor} />
+      <circle cx={32} cy={25} r={2} fill="white" opacity={0.85} />
 
-      {/* Flow endpoint nodes */}
-      <circle cx="10" cy="36" r="2" fill={flowColor} opacity={0.7} />
-      <circle cx="54" cy="36" r="2" fill={flowColor} opacity={0.7} />
+      {/* Flow dots */}
+      <circle cx={18} cy={14} r={1.5} fill={dotColor} opacity={dotOpacity} />
+      <circle cx={46} cy={14} r={1.5} fill={dotColor} opacity={dotOpacity} />
+      <circle cx={17.5} cy={48} r={1.5} fill={dotColor} opacity={dotOpacity} />
+      <circle cx={46.5} cy={48} r={1.5} fill={dotColor} opacity={dotOpacity} />
 
       {/* Top terminal nodes */}
-      <circle cx="10" cy="6" r="2" fill={strokeColor} />
-      <circle cx="54" cy="6" r="2" fill={strokeColor} />
+      <circle cx={18} cy={6} r={2.5} fill={strokeColor} />
+      <circle cx={46} cy={6} r={2.5} fill={strokeColor} />
     </svg>
   );
 }
@@ -90,10 +99,12 @@ export default function Logo({
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       <LogoSymbol
-        strokeColor={isWhite ? "#FFFFFF" : "#16A34A"}
-        flowColor={isWhite ? "#FFFFFF" : "#22C55E"}
+        strokeColor={isWhite ? "#FFFFFF" : "#059669"}
+        flowColor={isWhite ? "#FFFFFF" : "#10B981"}
+        flowLightColor={isWhite ? "#FFFFFF" : "#34D399"}
         accentColor={isWhite ? "#FCD34D" : "#F59E0B"}
-        flowOpacity={isWhite ? 0.4 : 0.6}
+        dotColor={isWhite ? "#FFFFFF" : "#10B981"}
+        dotOpacity={isWhite ? 0.2 : 0.3}
         size={size}
       />
       {showWordmark && (
@@ -104,7 +115,7 @@ export default function Logo({
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
           help
-          <span className={isWhite ? "text-white/85" : "text-primary"}>
+          <span className={isWhite ? "text-emerald-200" : "text-primary"}>
             flux
           </span>
         </span>
