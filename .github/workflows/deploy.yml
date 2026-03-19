@@ -1,0 +1,101 @@
+name: Deploy HelpFlux
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Clean unnecessary files
+        run: |
+          cd out
+          find . -name "*.txt" -delete
+          find . -name "*.map" -delete
+
+      - name: Create deploy artifact
+        run: tar -czf deploy.tar.gz -C out .
+
+      - name: Upload artifact (backup)
+        uses: actions/upload-artifact@v4
+        with:
+          name: helpflux-build-${{ github.sha }}
+          path: deploy.tar.gz
+          retention-days: 7
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: deploy
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            echo "==> Recebendo artifact..."
+
+      - name: Copy artifact to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: deploy
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: deploy.tar.gz
+          target: /tmp/
+
+      - name: Execute deploy on VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: deploy
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            SITE_DIR="/var/www/helpflux.com.br/public"
+            BACKUP_DIR="/var/www/helpflux.com.br/backup"
+
+            echo "==> Deploy helpflux.com.br"
+
+            # Backup
+            rm -rf "$BACKUP_DIR"
+            [ -d "$SITE_DIR" ] && [ "$(ls -A $SITE_DIR 2>/dev/null)" ] && cp -r "$SITE_DIR" "$BACKUP_DIR"
+
+            # Publicar
+            rm -rf "${SITE_DIR:?}"/*
+            tar -xzf /tmp/deploy.tar.gz -C "$SITE_DIR"
+
+            # Permissões
+            chown -R deploy:www-data "$SITE_DIR"
+            chmod -R 755 "$SITE_DIR"
+
+            # Verificar
+            if [ ! -f "$SITE_DIR/index.html" ]; then
+              echo "ERRO: rollback!"
+              rm -rf "${SITE_DIR:?}"/*
+              [ -d "$BACKUP_DIR" ] && cp -r "$BACKUP_DIR"/* "$SITE_DIR"/
+              exit 1
+            fi
+
+            # Reload Nginx
+            sudo systemctl reload nginx
+
+            # Limpar
+            rm -f /tmp/deploy.tar.gz
+
+            echo "==> Deploy concluído!"
+            echo "Arquivos: $(find $SITE_DIR -type f | wc -l)"

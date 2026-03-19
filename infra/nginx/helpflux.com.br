@@ -1,0 +1,47 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name helpflux.com.br www.helpflux.com.br;
+
+    # Certbot vai adicionar o redirect HTTPS automaticamente
+    # após rodar: certbot --nginx -d helpflux.com.br -d www.helpflux.com.br
+
+    root /var/www/helpflux.com.br/public;
+    index index.html;
+
+    # Logs separados por site
+    access_log /var/www/_shared/logs/helpflux-access.log;
+    error_log /var/www/_shared/logs/helpflux-error.log;
+
+    # Next.js static export - assets imutáveis (_next/static)
+    location /_next/static {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # Imagens e fontes
+    location ~* \.(ico|svg|png|jpg|jpeg|webp|woff2|woff|ttf)$ {
+        expires 6M;
+        add_header Cache-Control "public";
+    }
+
+    # Brand assets
+    location /brand {
+        expires 30d;
+        add_header Cache-Control "public";
+    }
+
+    # SPA-like routing: tenta arquivo, pasta, arquivo.html, 404
+    location / {
+        try_files $uri $uri/ $uri.html /404.html;
+    }
+
+    # Bloquear arquivos sensíveis
+    location ~ /\. {
+        deny all;
+    }
+
+    location ~ \.(txt|map)$ {
+        deny all;
+    }
+}

@@ -15,10 +15,14 @@
 
 # next.js
 /.next/
-# /out/ — mantido no git para deploy em hospedagem compartilhada
+/out/
 
 # production
 /build
+
+# deploy
+/deploy.tar.gz
+helpflux-deploy.zip
 
 # misc
 .DS_Store
