@@ -40,30 +40,23 @@ jobs:
           path: deploy.tar.gz
           retention-days: 7
 
-      - name: Deploy to VPS
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: deploy
-          key: ${{ secrets.VPS_SSH_KEY }}
-          script: |
-            echo "==> Recebendo artifact..."
-
       - name: Copy artifact to VPS
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: deploy
-          key: ${{ secrets.VPS_SSH_KEY }}
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: deploy.tar.gz
           target: /tmp/
 
       - name: Execute deploy on VPS
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: deploy
-          key: ${{ secrets.VPS_SSH_KEY }}
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             set -e
             SITE_DIR="/var/www/helpflux.com.br/public"
@@ -80,7 +73,7 @@ jobs:
             tar -xzf /tmp/deploy.tar.gz -C "$SITE_DIR"
 
             # Permissões
-            chown -R deploy:www-data "$SITE_DIR"
+            chown -R ${{ secrets.SSH_USER }}:www-data "$SITE_DIR"
             chmod -R 755 "$SITE_DIR"
 
             # Verificar
