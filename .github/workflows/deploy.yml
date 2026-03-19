@@ -59,8 +59,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             set -e
-            SITE_DIR="/var/www/helpflux.com.br/public"
-            BACKUP_DIR="/var/www/helpflux.com.br/backup"
+            SITE_DIR="/var/www/helpflux/public"
+            BACKUP_DIR="/var/www/helpflux/backup"
 
             echo "==> Deploy helpflux.com.br"
 
