@@ -1,19 +1,23 @@
 const values = [
   {
-    title: "Empatia",
-    description: "Antes de qualquer código, a gente escuta. Entender a dor real é o primeiro passo.",
+    title: "Produtos próprios",
+    description:
+      "Não fazemos projetos sob demanda. Criamos e mantemos nossos próprios SaaS — com dedicação total.",
   },
   {
-    title: "Fluidez",
-    description: "Processos travados viram fluxos otimizados. Menos atrito, mais resultado.",
+    title: "Nascidos na prática",
+    description:
+      "Cada produto surgiu de um problema real que vimos de perto. Código com propósito.",
   },
   {
-    title: "Confiança",
-    description: "Entregas transparentes, prazos respeitados e comunicação sem ruído.",
+    title: "Evolução contínua",
+    description:
+      "Nossos produtos crescem com os clientes. Ouvimos, iteramos e melhoramos constantemente.",
   },
   {
-    title: "Evolução",
-    description: "Seu software cresce com o negócio. Construímos pensando no hoje e no amanhã.",
+    title: "Ajudar é o nosso fluxo",
+    description:
+      "Tecnologia boa é a que some no dia a dia — ela só facilita. Não complica, não impressiona à toa.",
   },
 ];
 
@@ -42,22 +46,21 @@ export default function About() {
                 HelpDiet
               </a>
               {" "}— uma plataforma de segurança dos alimentos para
-              nutricionistas e cozinhas profissionais. Fichas técnicas digitais,
-              controle de validade, planilhas automáticas. Vimos de perto como
+              nutricionistas e cozinhas profissionais. Vimos de perto como
               processos manuais desperdiçam tempo e energia de quem só quer
               fazer seu trabalho bem feito.
             </p>
             <p className="text-muted leading-relaxed mb-6">
-              Essa experiência nos ensinou algo que carregamos até hoje:{" "}
+              Essa experiência nos mostrou que existem negócios inteiros
+              funcionando no papel, na planilha, no improviso.{" "}
               <strong className="text-foreground">
-                tecnologia boa é a que some no dia a dia — ela só facilita.
-              </strong>{" "}
-              Não complica, não impressiona à toa. Funciona.
+                E que a gente podia resolver isso.
+              </strong>
             </p>
             <p className="text-muted leading-relaxed">
-              Do HelpDiet nasceu a HelpFlux: uma software house completa, com a
-              mesma essência — ajudar empresas a fazerem seus fluxos funcionarem
-              melhor.
+              Do HelpDiet nasceu a HelpFlux: uma <strong className="text-foreground">SaaS House</strong> que
+              cria produtos digitais para diferentes segmentos — todos com a
+              mesma essência de simplificar o fluxo e ajudar de verdade.
             </p>
           </div>
 

@@ -4,9 +4,8 @@ import { useState } from "react";
 import Logo from "./Logo";
 
 const navLinks = [
-  { label: "Serviços", href: "#servicos" },
+  { label: "Produtos", href: "#produtos" },
   { label: "Sobre", href: "#sobre" },
-  { label: "Tecnologias", href: "#tecnologias" },
   { label: "Contato", href: "#contato" },
 ];
 
@@ -32,7 +31,9 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#contato"
+            href="https://wa.me/5528999743099"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-primary-light transition-colors duration-200"
           >
             Fale Conosco
@@ -74,7 +75,9 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#contato"
+            href="https://wa.me/5528999743099"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setOpen(false)}
             className="block mt-2 bg-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold text-center"
           >

@@ -11,8 +11,8 @@ export default function Footer() {
               <Logo variant="white" size={28} />
             </div>
             <p className="text-sm leading-relaxed max-w-sm mb-4">
-              Ajudamos empresas a otimizarem o fluxo do seu negócio com
-              software sob medida que simplifica processos e gera resultados.
+              SaaS House que cria produtos digitais para diferentes segmentos.
+              Cada plataforma nasce de um problema real — e evolui com quem usa.
             </p>
             <div className="text-xs text-white/40 space-y-1">
               <p>HELPFLUX SOLUÇÕES EM TECNOLOGIA LTDA</p>
@@ -23,18 +23,20 @@ export default function Footer() {
           {/* Links */}
           <div>
             <h4 className="text-white font-semibold text-sm mb-4">
-              Navegação
+              Produtos
             </h4>
             <ul className="space-y-2.5">
               {[
-                { label: "Serviços", href: "#servicos" },
-                { label: "Sobre", href: "#sobre" },
-                { label: "Tecnologias", href: "#tecnologias" },
-                { label: "Contato", href: "#contato" },
+                { label: "HelpDiet", href: "https://helpdiet.com.br" },
+                { label: "BeautyMetrics", href: "https://beautymetrics.com.br" },
+                { label: "TakeTicket", href: "https://taketicket.com.br" },
+                { label: "TreinaEdu", href: "https://treinaedu.com.br" },
               ].map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-sm hover:text-white transition-colors duration-200"
                   >
                     {link.label}

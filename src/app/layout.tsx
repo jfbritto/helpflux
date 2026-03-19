@@ -2,16 +2,18 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "HelpFlux | Software House",
+  title: "HelpFlux | SaaS House",
   description:
-    "Transformamos ideias em soluções digitais de alto impacto. Desenvolvimento de software sob medida, aplicações web, mobile e consultoria técnica.",
+    "Criamos e mantemos produtos SaaS que simplificam negócios. HelpDiet, BeautyMetrics, TakeTicket, TreinaEdu e mais.",
   keywords: [
-    "software house",
-    "desenvolvimento de software",
-    "aplicações web",
-    "mobile",
-    "consultoria",
-    "HelpFlux",
+    "saas house",
+    "produtos saas",
+    "helpflux",
+    "helpdiet",
+    "beautymetrics",
+    "taketicket",
+    "treinaedu",
+    "software como serviço",
   ],
 };
 
