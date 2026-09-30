@@ -1,10 +1,27 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const title = "HelpFlux | SaaS House";
+const description =
+  "Criamos e mantemos produtos SaaS que simplificam negócios. HelpDiet, BeautyMetrics, TakeTicket, TreinaEdu e mais.";
+
 export const metadata: Metadata = {
-  title: "HelpFlux | SaaS House",
-  description:
-    "Criamos e mantemos produtos SaaS que simplificam negócios. HelpDiet, BeautyMetrics, TakeTicket, TreinaEdu e mais.",
+  metadataBase: new URL("https://helpflux.com.br"),
+  title,
+  description,
+  // Imagem de compartilhamento: src/app/opengraph-image.png (fonte em scripts/og-image.html)
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    siteName: "HelpFlux",
+    title,
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
   keywords: [
     "saas house",
     "produtos saas",
