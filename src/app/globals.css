@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 /*
- * Identidade HelpFlux — derivada da logo (lâmpada + engrenagem em traço):
+ * Identidade HelpFlux, derivada da logo (lâmpada + engrenagem em traço):
  * tinta petróleo quase preta sobre papel cinza-claro, monocromática.
  */
 :root {
@@ -72,7 +72,7 @@ html {
   box-decoration-break: clone;
 }
 
-/* Grade de pontos — ecoa os pontos de fluxo da logo */
+/* Grade de pontos: ecoa os pontos de fluxo da logo */
 .dot-grid {
   background-image: radial-gradient(rgba(15, 30, 39, 0.09) 1.2px, transparent 1.2px);
   background-size: 24px 24px;
@@ -122,7 +122,7 @@ html {
   animation: fade-in-up 0.6s ease-out forwards;
 }
 
-/* Símbolo que se desenha — usar com pathLength="1" nos paths */
+/* Símbolo que se desenha: usar com pathLength="1" nos paths */
 .draw-in path {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;

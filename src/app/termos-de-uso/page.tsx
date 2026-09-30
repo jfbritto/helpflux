@@ -14,7 +14,7 @@ export default function TermosDeUso() {
         Este site é operado pela <strong>HELPFLUX SOLUÇÕES EM TECNOLOGIA LTDA</strong>,
         pessoa jurídica de direito privado, inscrita no CNPJ sob o nº
         <strong> 58.063.432/0001-21</strong>, com sede na Rua Henrique João Júlio Kuster,
-        452, Santa Maria de Jetibá – ES, CEP 29645-234 (doravante denominada
+        452, Santa Maria de Jetibá/ES, CEP 29645-234 (doravante denominada
         &quot;HelpFlux&quot;).
       </p>
 
@@ -45,8 +45,8 @@ export default function TermosDeUso() {
 
       <h2>4. Propriedade Intelectual</h2>
       <p>
-        Todo o conteúdo presente neste site — incluindo, mas não se limitando
-        a textos, logotipos, ícones, imagens, código-fonte, design e layout —
+        Todo o conteúdo presente neste site (incluindo, mas não se limitando
+        a textos, logotipos, ícones, imagens, código-fonte, design e layout)
         é de propriedade exclusiva da HelpFlux ou de seus licenciantes, sendo
         protegido pela legislação brasileira de propriedade intelectual (Lei nº
         9.610/1998 e Lei nº 9.279/1996).
@@ -101,7 +101,7 @@ export default function TermosDeUso() {
       <h2>9. Legislação Aplicável e Foro</h2>
       <p>
         Estes Termos de Uso são regidos pela legislação da República Federativa
-        do Brasil. Fica eleito o foro da comarca de Santa Maria de Jetibá – ES
+        do Brasil. Fica eleito o foro da comarca de Santa Maria de Jetibá/ES
         para dirimir quaisquer controvérsias decorrentes destes termos, com
         renúncia expressa a qualquer outro, por mais privilegiado que seja.
       </p>
@@ -123,7 +123,7 @@ export default function TermosDeUso() {
         </li>
         <li>
           <strong>Endereço:</strong> Rua Henrique João Júlio Kuster, 452,
-          Santa Maria de Jetibá – ES, CEP 29645-234
+          Santa Maria de Jetibá/ES, CEP 29645-234
         </li>
       </ul>
     </LegalLayout>

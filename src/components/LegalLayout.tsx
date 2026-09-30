@@ -45,7 +45,7 @@ export default function LegalLayout({
         <div className="max-w-4xl mx-auto px-6 py-8 text-center text-xs text-muted">
           <p>
             &copy; {new Date().getFullYear()} HelpFlux Soluções em Tecnologia
-            LTDA — CNPJ 58.063.432/0001-21
+            LTDA · CNPJ 58.063.432/0001-21
           </p>
         </div>
       </footer>

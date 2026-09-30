@@ -11,7 +11,7 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-surface border border-border mb-8">
               <div className="w-2 h-2 rounded-full bg-foreground animate-pulse" />
               <span className="text-sm font-medium text-foreground">
-                SaaS House — Produtos digitais que funcionam
+                SaaS House · Produtos digitais que funcionam
               </span>
             </div>
 
@@ -23,7 +23,7 @@ export default function Hero() {
             <p className="text-lg md:text-xl text-muted max-w-2xl mb-10 leading-relaxed">
               Nascemos na prática, resolvendo problemas reais. Hoje mantemos
               produtos próprios que otimizam o fluxo de empresas em diferentes
-              segmentos — da cozinha ao palco, da clínica à sala de aula.
+              segmentos: da cozinha ao palco, da clínica à sala de aula.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">

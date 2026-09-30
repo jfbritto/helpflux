@@ -119,8 +119,8 @@ export default function Products() {
         {/* Em breve */}
         <div className="mt-8 p-6 rounded-3xl border-2 border-dashed border-foreground/20 text-center">
           <p className="text-muted text-sm">
-            <span className="text-foreground font-semibold">Em breve</span>{" "}
-            — Novos produtos em desenvolvimento. Estamos sempre criando
+            <span className="text-foreground font-semibold">Em breve:</span>{" "}
+            novos produtos em desenvolvimento. Estamos sempre criando
             soluções para novos segmentos.
           </p>
         </div>

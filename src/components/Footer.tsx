@@ -12,7 +12,7 @@ export default function Footer() {
             </div>
             <p className="text-sm leading-relaxed max-w-sm mb-4">
               SaaS House que cria produtos digitais para diferentes segmentos.
-              Cada plataforma nasce de um problema real — e evolui com quem usa.
+              Cada plataforma nasce de um problema real e evolui com quem usa.
             </p>
             <div className="text-xs text-white/40 space-y-1">
               <p>HELPFLUX SOLUÇÕES EM TECNOLOGIA LTDA</p>
@@ -73,7 +73,7 @@ export default function Footer() {
               <li className="pt-1 text-white/50">
                 Rua Henrique João Júlio Kuster, 452
                 <br />
-                Santa Maria de Jetibá – ES
+                Santa Maria de Jetibá/ES
                 <br />
                 CEP 29645-234
               </li>

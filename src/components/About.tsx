@@ -4,7 +4,7 @@ const values = [
   {
     title: "Produtos próprios",
     description:
-      "Não fazemos projetos sob demanda. Criamos e mantemos nossos próprios SaaS — com dedicação total.",
+      "Não fazemos projetos sob demanda. Criamos e mantemos nossos próprios SaaS, com dedicação total.",
   },
   {
     title: "Nascidos na prática",
@@ -19,7 +19,7 @@ const values = [
   {
     title: "Ajudar é o nosso fluxo",
     description:
-      "Tecnologia boa é a que some no dia a dia — ela só facilita. Não complica, não impressiona à toa.",
+      "Tecnologia boa é a que some no dia a dia: ela só facilita. Não complica, não impressiona à toa.",
   },
 ];
 
@@ -46,7 +46,7 @@ export default function About() {
               >
                 HelpDiet
               </a>
-              {" "}— uma plataforma de segurança dos alimentos para
+              , uma plataforma de segurança dos alimentos para
               nutricionistas e cozinhas profissionais. Vimos de perto como
               processos manuais desperdiçam tempo e energia de quem só quer
               fazer seu trabalho bem feito.
@@ -60,7 +60,7 @@ export default function About() {
             </p>
             <p className="text-muted leading-relaxed">
               Do HelpDiet nasceu a HelpFlux: uma <strong className="text-foreground">SaaS House</strong> que
-              cria produtos digitais para diferentes segmentos — todos com a
+              cria produtos digitais para diferentes segmentos, todos com a
               mesma essência de simplificar o fluxo e ajudar de verdade.
             </p>
           </div>

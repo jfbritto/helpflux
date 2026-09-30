@@ -12,10 +12,10 @@ export default function PoliticaDePrivacidade() {
       <p>
         A <strong>HELPFLUX SOLUÇÕES EM TECNOLOGIA LTDA</strong> (CNPJ
         58.063.432/0001-21), com sede na Rua Henrique João Júlio Kuster, 452,
-        Santa Maria de Jetibá – ES, CEP 29645-234, leva a proteção dos seus
+        Santa Maria de Jetibá/ES, CEP 29645-234, leva a proteção dos seus
         dados pessoais a sério. Esta Política de Privacidade descreve como
         coletamos, utilizamos, armazenamos e protegemos suas informações, em
-        conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 —
+        conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018,
         LGPD).
       </p>
 
@@ -211,7 +211,7 @@ export default function PoliticaDePrivacidade() {
         </li>
         <li>
           <strong>Endereço:</strong> Rua Henrique João Júlio Kuster, 452,
-          Santa Maria de Jetibá – ES, CEP 29645-234
+          Santa Maria de Jetibá/ES, CEP 29645-234
         </li>
       </ul>
       <p>
