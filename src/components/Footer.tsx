@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="mb-4">
-              <Logo variant="white" size={28} />
+              <Logo variant="white" size={38} />
             </div>
             <p className="text-sm leading-relaxed max-w-sm mb-4">
               SaaS House que cria produtos digitais para diferentes segmentos.
@@ -54,10 +54,10 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <a
-                  href="mailto:helpflux.atendimento@gmail.com"
+                  href="mailto:contato@helpflux.com.br"
                   className="hover:text-white transition-colors duration-200"
                 >
-                  helpflux.atendimento@gmail.com
+                  contato@helpflux.com.br
                 </a>
               </li>
               <li>
@@ -117,7 +117,7 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="mailto:helpflux.atendimento@gmail.com"
+              href="mailto:contato@helpflux.com.br"
               className="hover:text-white transition-colors"
               aria-label="Email"
             >

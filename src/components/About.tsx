@@ -1,3 +1,5 @@
+import SectionLabel from "./SectionLabel";
+
 const values = [
   {
     title: "Produtos próprios",
@@ -23,17 +25,16 @@ const values = [
 
 export default function About() {
   return (
-    <section id="sobre" className="py-24 grid-bg">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="sobre" className="relative py-24 overflow-hidden">
+      <div className="absolute inset-0 dot-grid fade-edges" />
+      <div className="max-w-7xl mx-auto px-6 relative">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left */}
           <div>
-            <span className="text-sm font-semibold text-primary uppercase tracking-wider">
-              Nossa história
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-6 tracking-tight">
+            <SectionLabel>Nossa história</SectionLabel>
+            <h2 className="text-3xl md:text-4xl font-semibold mt-4 mb-6">
               Nascemos na cozinha.{" "}
-              <span className="text-primary">Literalmente.</span>
+              <span className="highlight">Literalmente.</span>
             </h2>
             <p className="text-muted text-lg leading-relaxed mb-6">
               Tudo começou com o{" "}
@@ -41,7 +42,7 @@ export default function About() {
                 href="https://helpdiet.com.br"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary font-semibold hover:underline"
+                className="text-foreground font-semibold underline decoration-2 underline-offset-4 decoration-foreground/30 hover:decoration-foreground transition-colors"
               >
                 HelpDiet
               </a>
@@ -69,10 +70,10 @@ export default function About() {
             {values.map((value, i) => (
               <div
                 key={value.title}
-                className="glass rounded-2xl p-6 hover:shadow-md transition-shadow duration-300"
+                className="bg-surface border border-border rounded-3xl p-6 hover:border-foreground/40 hover:shadow-md transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <span className="text-primary font-bold text-sm">
+                <div className="w-10 h-10 rounded-full border-2 border-foreground flex items-center justify-center mb-4">
+                  <span className="font-display text-foreground font-semibold text-sm">
                     0{i + 1}
                   </span>
                 </div>

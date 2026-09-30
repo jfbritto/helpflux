@@ -1,274 +1,173 @@
 #!/usr/bin/env python3
 """
 HelpFlux Logo Generator
-Concept: Abstract "H" formed by circuit-like flowing paths with connection nodes.
-Represents technology (circuits, data paths) + help (connection points) + flux (flow).
+
+Conceito: lâmpada com engrenagem, em traço contínuo (line-art) e pontas
+arredondadas. Ideia (lâmpada) + tecnologia que faz funcionar (engrenagem).
+Os pontos laterais e o trio "• ● •" sob o nome representam o fluxo.
+
+Gera os SVGs de marca em public/brand e os ícones em src/app.
+O mesmo desenho é usado em src/components/Logo.tsx (SYMBOL_PATHS).
+
+Uso: python3 scripts/generate-logo.py
 """
 
-import svgwrite
 import math
 import os
 
-OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'public', 'brand')
-ICON_DIR = os.path.join(os.path.dirname(__file__), '..', 'src', 'app')
+ROOT = os.path.join(os.path.dirname(__file__), "..")
+BRAND_DIR = os.path.join(ROOT, "public", "brand")
+ICON_DIR = os.path.join(ROOT, "src", "app")
 
-# Brand colors
-GREEN = '#16A34A'
-GREEN_LIGHT = '#22C55E'
-GREEN_DARK = '#0D7A3A'
-AMBER = '#F59E0B'
-AMBER_LIGHT = '#FCD34D'
-DARK = '#1A2E1A'
-WHITE = '#FFFFFF'
+# Cores da marca (extraídas da logo original)
+INK = "#0F1E27"
+PAPER = "#EEF1F0"
+WHITE = "#FFFFFF"
 
+# Geometria do símbolo — viewBox 0 0 76 102
+CX, CY = 38.0, 34.0  # centro da engrenagem
+R_GLASS = 17.5  # círculo interno (vidro da lâmpada)
+R_BODY = 23.0  # corpo da engrenagem
+R_TIP = 29.5  # ponta dos dentes
+TOOTH_BASE = 5.2  # meia-largura do dente na base
+TOOTH_TIP = 4.2  # meia-largura do dente na ponta
+STROKE = 3.6
+VIEWBOX_W, VIEWBOX_H = 76, 102
 
-def draw_symbol(dwg, group, x_off, y_off, scale, stroke_color, node_color, accent_color, flow_color, node_accent=None):
-    """Draw the HelpFlux circuit-H symbol."""
-    if node_accent is None:
-        node_accent = accent_color
-
-    s = scale
-    ox, oy = x_off, y_off
-
-    # Stroke widths
-    main_w = 2.8 * s
-    cross_w = 2.4 * s
-    flow_w = 1.8 * s
-    node_r = 2.5 * s
-    small_r = 1.8 * s
-
-    # === LEFT PILLAR ===
-    # Vertical path with slight tech-curve (not perfectly straight)
-    left_x = 8 * s + ox
-    left_top = 4 * s + oy
-    left_bot = 56 * s + oy
-    left_mid_y = 30 * s + oy
-
-    # Left pillar: two segments with a slight offset at middle
-    group.add(dwg.line(
-        start=(left_x, left_top),
-        end=(left_x, left_mid_y - 4 * s),
-        stroke=stroke_color, stroke_width=main_w,
-        stroke_linecap='round'
-    ))
-    group.add(dwg.line(
-        start=(left_x, left_mid_y + 4 * s),
-        end=(left_x + 2 * s, left_bot),
-        stroke=stroke_color, stroke_width=main_w,
-        stroke_linecap='round'
-    ))
-
-    # === RIGHT PILLAR ===
-    right_x = 52 * s + ox
-    right_top = 4 * s + oy
-    right_bot = 56 * s + oy
-    right_mid_y = 30 * s + oy
-
-    group.add(dwg.line(
-        start=(right_x, right_top),
-        end=(right_x, right_mid_y - 4 * s),
-        stroke=stroke_color, stroke_width=main_w,
-        stroke_linecap='round'
-    ))
-    group.add(dwg.line(
-        start=(right_x, right_mid_y + 4 * s),
-        end=(right_x - 2 * s, right_bot),
-        stroke=stroke_color, stroke_width=main_w,
-        stroke_linecap='round'
-    ))
-
-    # === CROSSBAR (main connection - accent) ===
-    # Circuit-style path with right angles and rounded corners
-    cross_y = 26 * s + oy
-    cp_offset = 6 * s
-
-    cross_path = dwg.path(
-        d=f'M {left_x},{cross_y} '
-          f'L {left_x + 8 * s},{cross_y - 4 * s} '
-          f'L {right_x - 8 * s},{cross_y - 4 * s} '
-          f'L {right_x},{cross_y}',
-        stroke=accent_color, stroke_width=cross_w,
-        stroke_linecap='round', stroke_linejoin='round',
-        fill='none'
-    )
-    group.add(cross_path)
-
-    # === SECONDARY FLOW PATH (lower) ===
-    flow_y = 36 * s + oy
-    flow_path = dwg.path(
-        d=f'M {left_x},{flow_y} '
-          f'Q {30 * s + ox},{flow_y + 6 * s} {right_x},{flow_y}',
-        stroke=flow_color, stroke_width=flow_w,
-        stroke_linecap='round', fill='none',
-        opacity=0.6
-    )
-    group.add(flow_path)
-
-    # === DATA FLOW DOTS (small dots along paths suggesting movement) ===
-    dot_positions = [
-        (left_x, 12 * s + oy, small_r * 0.6),
-        (right_x, 14 * s + oy, small_r * 0.6),
-        (left_x + 2 * s, 48 * s + oy, small_r * 0.6),
-        (right_x - 2 * s, 46 * s + oy, small_r * 0.6),
-    ]
-    for dx, dy, dr in dot_positions:
-        group.add(dwg.circle(
-            center=(dx, dy), r=dr,
-            fill=stroke_color, opacity=0.35
-        ))
-
-    # === CONNECTION NODES (main intersections) ===
-    # Left junction
-    group.add(dwg.circle(
-        center=(left_x, cross_y), r=node_r,
-        fill=node_accent
-    ))
-    # Right junction
-    group.add(dwg.circle(
-        center=(right_x, cross_y), r=node_r,
-        fill=node_accent
-    ))
-    # Center node (the "help" spark)
-    center_x = 30 * s + ox
-    center_y = cross_y - 4 * s
-    group.add(dwg.circle(
-        center=(center_x, center_y), r=node_r * 1.3,
-        fill=node_accent
-    ))
-    # Inner glow on center node
-    group.add(dwg.circle(
-        center=(center_x, center_y), r=node_r * 0.6,
-        fill=WHITE if node_accent != WHITE else accent_color,
-        opacity=0.8
-    ))
-
-    # Lower flow nodes
-    group.add(dwg.circle(
-        center=(left_x, flow_y), r=small_r,
-        fill=flow_color, opacity=0.7
-    ))
-    group.add(dwg.circle(
-        center=(right_x, flow_y), r=small_r,
-        fill=flow_color, opacity=0.7
-    ))
-
-    # Top terminals (entry points)
-    group.add(dwg.circle(
-        center=(left_x, left_top), r=small_r,
-        fill=stroke_color
-    ))
-    group.add(dwg.circle(
-        center=(right_x, right_top), r=small_r,
-        fill=stroke_color
-    ))
+# Dentes a cada 45°; o de baixo (90°) dá lugar ao pescoço da lâmpada
+TEETH = [135, 180, 225, 270, 315, 0, 45]
 
 
-def generate_symbol(filename, width, height, bg_color=None, bg_radius=0,
-                    stroke_color=GREEN, node_color=GREEN, accent_color=AMBER,
-                    flow_color=GREEN_LIGHT, node_accent=None, scale=1.0,
-                    x_offset=0, y_offset=0):
-    """Generate a symbol-only SVG."""
-    dwg = svgwrite.Drawing(filename, size=(width, height), viewBox=f'0 0 {width} {height}')
-
-    if bg_color:
-        dwg.add(dwg.rect(insert=(0, 0), size=(width, height), rx=bg_radius, ry=bg_radius, fill=bg_color))
-
-    g = dwg.g()
-    draw_symbol(dwg, g, x_offset, y_offset, scale, stroke_color, node_color, accent_color, flow_color, node_accent)
-    dwg.add(g)
-    dwg.save()
-    print(f'  Generated: {filename}')
+def pt(angle_deg, r):
+    a = math.radians(angle_deg)
+    return CX + r * math.cos(a), CY + r * math.sin(a)
 
 
-def generate_logo_with_wordmark(filename, variant='default'):
-    """Generate full logo with symbol + wordmark."""
-    width = 300
-    height = 64
-    dwg = svgwrite.Drawing(filename, size=(width, height), viewBox=f'0 0 {width} {height}')
-
-    g = dwg.g()
-
-    if variant == 'white':
-        draw_symbol(dwg, g, 2, 1, 0.92, WHITE, WHITE, AMBER_LIGHT, '#FFFFFF', AMBER_LIGHT)
-        text_fill = WHITE
-        flux_fill = '#D4D4D4'
-    else:
-        draw_symbol(dwg, g, 2, 1, 0.92, GREEN, GREEN, AMBER, GREEN_LIGHT, AMBER)
-        text_fill = DARK
-        flux_fill = GREEN
-
-    dwg.add(g)
-
-    # Wordmark
-    text_group = dwg.g(
-        style=f"font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px;"
-    )
-    text_group.add(dwg.text('help', insert=(72, 42), fill=text_fill))
-    text_group.add(dwg.text('flux', insert=(72 + 62, 42), fill=flux_fill))
-    dwg.add(text_group)
-
-    dwg.save()
-    print(f'  Generated: {filename}')
+def fmt(v):
+    return f"{v:.2f}".rstrip("0").rstrip(".")
 
 
-def generate_favicon(filename, size):
-    """Generate favicon SVG with symbol on green background."""
-    dwg = svgwrite.Drawing(filename, size=(size, size), viewBox=f'0 0 {size} {size}')
-
-    # Background
-    radius = size * 0.25
-    dwg.add(dwg.rect(insert=(0, 0), size=(size, size), rx=radius, ry=radius, fill=GREEN))
-
-    # Symbol centered and scaled
-    padding = size * 0.15
-    symbol_size = size - padding * 2
-    icon_scale = symbol_size / 60
-
-    g = dwg.g()
-    draw_symbol(dwg, g, padding, padding, icon_scale,
-                WHITE, WHITE, AMBER_LIGHT, '#FFFFFF', AMBER_LIGHT)
-    dwg.add(g)
-    dwg.save()
-    print(f'  Generated: {filename}')
+def p(x, y):
+    return f"{fmt(x)},{fmt(y)}"
 
 
-if __name__ == '__main__':
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+BASE_HALF = math.degrees(math.asin(TOOTH_BASE / R_BODY))
+TIP_HALF = math.degrees(math.asin(TOOTH_TIP / R_TIP))
 
-    print('Generating HelpFlux brand assets...\n')
 
-    # Main logo variants
-    generate_logo_with_wordmark(os.path.join(OUTPUT_DIR, 'logo.svg'), 'default')
-    generate_logo_with_wordmark(os.path.join(OUTPUT_DIR, 'logo-white.svg'), 'white')
+def gear_path():
+    """Contorno fechado da engrenagem, sem o dente de baixo."""
+    start = TEETH[0] - BASE_HALF
+    d = [f"M{p(*pt(start, R_BODY))}"]
+    for i, t in enumerate(TEETH):
+        t = t if i == 0 or t >= TEETH[0] else t + 360
+        d.append(f"L{p(*pt(t - TIP_HALF, R_TIP))}")
+        d.append(f"A{fmt(R_TIP)},{fmt(R_TIP)} 0 0 1 {p(*pt(t + TIP_HALF, R_TIP))}")
+        d.append(f"L{p(*pt(t + BASE_HALF, R_BODY))}")
+        nxt = TEETH[i + 1] if i + 1 < len(TEETH) else None
+        if nxt is not None:
+            nxt = nxt if nxt >= TEETH[0] else nxt + 360
+            d.append(f"A{fmt(R_BODY)},{fmt(R_BODY)} 0 0 1 {p(*pt(nxt - BASE_HALF, R_BODY))}")
+    # Arco de baixo, fechando no dente inferior esquerdo (passa atrás do filamento)
+    d.append(f"A{fmt(R_BODY)},{fmt(R_BODY)} 0 0 1 {p(*pt(start, R_BODY))}")
+    return " ".join(d)
 
-    # Symbol only variants
-    generate_symbol(
-        os.path.join(OUTPUT_DIR, 'symbol.svg'),
-        width=64, height=64,
-        scale=0.97, x_offset=2, y_offset=1
-    )
-    generate_symbol(
-        os.path.join(OUTPUT_DIR, 'symbol-dark.svg'),
-        width=64, height=64,
-        stroke_color=WHITE, node_color=WHITE,
-        accent_color=AMBER_LIGHT, flow_color='#FFFFFF',
-        node_accent=AMBER_LIGHT,
-        scale=0.97, x_offset=2, y_offset=1
+
+def neck_path():
+    """Pescoço da lâmpada: sai da ponta dos dentes inferiores e desce até a base."""
+    lx, ly = pt(135 - TIP_HALF, R_TIP)
+    rx, ry = pt(45 + TIP_HALF, R_TIP)
+    return (
+        f"M{p(lx, ly)} C{p(lx + 3.5, ly + 4)} {p(28.5, 66)} {p(28.5, 75)} "
+        f"M{p(rx, ry)} C{p(rx - 3.5, ry + 4)} {p(VIEWBOX_W - 28.5, 66)} {p(VIEWBOX_W - 28.5, 75)}"
     )
 
-    # Favicons
-    generate_favicon(os.path.join(ICON_DIR, 'icon.svg'), 32)
-    generate_favicon(os.path.join(ICON_DIR, 'apple-icon.svg'), 180)
 
-    # Large symbol for print/social
-    generate_symbol(
-        os.path.join(OUTPUT_DIR, 'symbol-512.svg'),
-        width=512, height=512,
-        bg_color=GREEN, bg_radius=96,
-        stroke_color=WHITE, node_color=WHITE,
-        accent_color=AMBER_LIGHT, flow_color='#FFFFFF',
-        node_accent=AMBER_LIGHT,
-        scale=7.5, x_offset=30, y_offset=25
+SYMBOL_PATHS = {
+    "gear": gear_path(),
+    "neck": neck_path(),
+    "glass": f"M{p(CX - R_GLASS, CY)} a{fmt(R_GLASS)},{fmt(R_GLASS)} 0 1 0 {fmt(2 * R_GLASS)},0 a{fmt(R_GLASS)},{fmt(R_GLASS)} 0 1 0 {fmt(-2 * R_GLASS)},0",
+    "filament": "M34.3,75 V41.5 C34.3,38 31.3,36.5 31.3,32.5 M41.7,75 V41.5 C41.7,38 44.7,36.5 44.7,32.5",
+    "base": "M25.5,76.5 H50.5 M26,83.5 H50 M26.5,90.5 H49.5",
+    "cap": "M30,91.5 C30,96 33.5,98.5 38,98.5 C42.5,98.5 46,96 46,91.5",
+}
+SIDE_DOTS = [(7.5, 64, 2.8), (68.5, 64, 2.8)]
+
+
+def symbol_group(color, with_dots=True, stroke=STROKE):
+    paths = "".join(
+        f'<path d="{d}"/>' for d in SYMBOL_PATHS.values()
+    )
+    dots = ""
+    if with_dots:
+        dots = "".join(
+            f'<circle cx="{fmt(x)}" cy="{fmt(y)}" r="{fmt(r)}" fill="{color}"/>'
+            for x, y, r in SIDE_DOTS
+        )
+    return (
+        f'<g fill="none" stroke="{color}" stroke-width="{fmt(stroke)}" '
+        f'stroke-linecap="round" stroke-linejoin="round">{paths}</g>{dots}'
     )
 
-    print('\nDone! All assets generated.')
+
+def svg(w, h, body, view_box=None):
+    vb = view_box or f"0 0 {fmt(w)} {fmt(h)}"
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{fmt(w)}" height="{fmt(h)}" '
+        f'viewBox="{vb}">{body}</svg>\n'
+    )
+
+
+def square_icon(size, bg, fg, radius):
+    """Símbolo centralizado num quadrado arredondado (favicon / app icon)."""
+    pad = 10
+    box = VIEWBOX_H + pad * 2
+    offset_x = (box - VIEWBOX_W) / 2
+    body = (
+        f'<rect width="{box}" height="{box}" rx="{fmt(box * radius)}" fill="{bg}"/>'
+        f'<g transform="translate({fmt(offset_x)},{pad})">'
+        f"{symbol_group(fg, with_dots=False, stroke=4)}</g>"
+    )
+    return svg(size, size, body, f"0 0 {box} {box}")
+
+
+def lockup(color):
+    """Símbolo + nome + trio de pontos, empilhados (como a logo original)."""
+    w, h = 240, 196
+    sx = (w - VIEWBOX_W) / 2
+    body = (
+        f'<g transform="translate({fmt(sx)},0)">{symbol_group(color)}</g>'
+        f'<text x="{w / 2}" y="150" text-anchor="middle" fill="{color}" '
+        f"font-family=\"Poppins, 'Helvetica Neue', Arial, sans-serif\" "
+        f'font-size="44" font-weight="600" letter-spacing="-0.5">HelpFlux</text>'
+        f'<circle cx="{w / 2 - 16}" cy="182" r="2.6" fill="{color}"/>'
+        f'<circle cx="{w / 2}" cy="182" r="5" fill="{color}"/>'
+        f'<circle cx="{w / 2 + 16}" cy="182" r="2.6" fill="{color}"/>'
+    )
+    return svg(w, h, body)
+
+
+def write(path, content):
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+    print("✓", os.path.relpath(path, ROOT))
+
+
+def main():
+    os.makedirs(BRAND_DIR, exist_ok=True)
+
+    write(os.path.join(BRAND_DIR, "symbol.svg"), svg(VIEWBOX_W, VIEWBOX_H, symbol_group(INK)))
+    write(os.path.join(BRAND_DIR, "symbol-white.svg"), svg(VIEWBOX_W, VIEWBOX_H, symbol_group(WHITE)))
+    write(os.path.join(BRAND_DIR, "symbol-512.svg"), square_icon(512, INK, PAPER, 0.22))
+    write(os.path.join(BRAND_DIR, "logo.svg"), lockup(INK))
+    write(os.path.join(BRAND_DIR, "logo-white.svg"), lockup(WHITE))
+    write(os.path.join(ICON_DIR, "icon.svg"), square_icon(32, INK, PAPER, 0.22))
+    write(os.path.join(ICON_DIR, "apple-icon.svg"), square_icon(180, INK, PAPER, 0))
+
+    print("\nSYMBOL_PATHS para src/components/Logo.tsx:")
+    for k, v in SYMBOL_PATHS.items():
+        print(f'  {k}: "{v}",')
+
+
+if __name__ == "__main__":
+    main()

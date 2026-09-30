@@ -113,8 +113,8 @@ export default function TermosDeUso() {
       <ul>
         <li>
           <strong>E-mail:</strong>{" "}
-          <a href="mailto:helpflux.atendimento@gmail.com">
-            helpflux.atendimento@gmail.com
+          <a href="mailto:contato@helpflux.com.br">
+            contato@helpflux.com.br
           </a>
         </li>
         <li>

@@ -15,11 +15,11 @@ export default function LegalLayout({
       <header className="border-b border-border bg-surface">
         <div className="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between">
           <a href="/">
-            <Logo size={28} />
+            <Logo size={34} />
           </a>
           <a
             href="/"
-            className="text-sm text-muted hover:text-primary transition-colors"
+            className="text-sm text-muted hover:text-foreground transition-colors"
           >
             Voltar ao site
           </a>
@@ -28,17 +28,14 @@ export default function LegalLayout({
 
       {/* Content */}
       <main className="max-w-4xl mx-auto px-6 py-12">
-        <h1
-          className="text-3xl md:text-4xl font-bold tracking-tight mb-2"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        >
+        <h1 className="text-3xl md:text-4xl font-semibold mb-2">
           {title}
         </h1>
         <p className="text-sm text-muted mb-10">
           Última atualização: {lastUpdated}
         </p>
 
-        <div className="prose prose-slate max-w-none [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:tracking-tight [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mt-8 [&_h3]:mb-3 [&_p]:text-muted [&_p]:leading-relaxed [&_p]:mb-4 [&_ul]:text-muted [&_ul]:leading-relaxed [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-2 [&_strong]:text-foreground [&_a]:text-primary [&_a]:hover:underline">
+        <div className="prose prose-slate max-w-none [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:tracking-tight [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mt-8 [&_h3]:mb-3 [&_p]:text-muted [&_p]:leading-relaxed [&_p]:mb-4 [&_ul]:text-muted [&_ul]:leading-relaxed [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-2 [&_strong]:text-foreground [&_a]:text-foreground [&_a]:font-medium [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-foreground/30 [&_a]:hover:decoration-foreground">
           {children}
         </div>
       </main>
