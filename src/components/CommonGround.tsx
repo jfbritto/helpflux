@@ -24,8 +24,8 @@ const items = [
   {
     icon: PhoneIcon,
     title: "Apps para iOS e Android",
-    text: "Apps nativos feitos com Expo, a partir da mesma base. No Hotel em Dia e no HelpCheck, o app guarda o trabalho feito sem internet e envia quando a conexão volta. O do TreinaEdu está na App Store e no Google Play.",
-    usedIn: ["Hotel em Dia", "TreinaEdu", "HelpCheck"],
+    text: "Apps nativos para iPhone e Android. Os do Hotel em Dia, do TreinaEdu e do HelpCheck são feitos com Expo, a partir da mesma base. No Hotel em Dia e no HelpCheck, o app guarda o trabalho feito sem internet e envia quando a conexão volta. Os do TreinaEdu e do Kanean estão na App Store e no Google Play.",
+    usedIn: ["Hotel em Dia", "TreinaEdu", "HelpCheck", "Kanean"],
   },
   {
     icon: ShieldIcon,

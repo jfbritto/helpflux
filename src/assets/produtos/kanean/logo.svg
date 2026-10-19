@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="green" x1="178" y1="72" x2="405" y2="274" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#57C99A"/>
+      <stop offset="1" stop-color="#129B69"/>
+    </linearGradient>
+    <linearGradient id="slate" x1="92" y1="330" x2="304" y2="457" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#64748B"/>
+      <stop offset="1" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="navy" x1="50" y1="70" x2="454" y2="458" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#183153"/>
+      <stop offset="1" stop-color="#07172C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- K vertical stem -->
+  <path d="M58 62C58 39.9 75.9 22 98 22H105C127.1 22 145 39.9 145 62V223
+           C145 241 138 258 125 271L58 338V62Z" fill="url(#navy)"/>
+
+  <!-- Upper K arm -->
+  <path d="M178 252L352 78C367 63 391 63 406 78C421 93 421 117 406 132
+           L232 306L178 252Z" fill="url(#green)"/>
+
+  <!-- K center connector -->
+  <path d="M92 337L148 281L210 343L154 399L92 337Z" fill="#102640"/>
+
+  <!-- Lower-left urban path -->
+  <path d="M58 384L80 362L178 460H108C80.4 460 58 437.6 58 410V384Z" fill="url(#slate)"/>
+
+  <!-- Lower-right K arm -->
+  <path d="M204 398L250 352L358 460H302C286 460 270 454 258 442L204 398Z" fill="url(#navy)"/>
+
+  <!-- Location pin -->
+  <path d="M391 248C341.8 248 302 287.8 302 337C302 390 391 466 391 466
+           C391 466 480 390 480 337C480 287.8 440.2 248 391 248Z" fill="url(#navy)"/>
+  <circle cx="391" cy="337" r="43" fill="#F8FAFC"/>
+  <circle cx="391" cy="337" r="22" fill="url(#green)"/>
+</svg>
