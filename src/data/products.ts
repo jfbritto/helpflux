@@ -5,6 +5,7 @@ import { helpcheck } from "./produtos/helpcheck";
 import { treinaedu } from "./produtos/treinaedu";
 import { beautymetrics } from "./produtos/beautymetrics";
 import { taketicket } from "./produtos/taketicket";
+import { kanean } from "./produtos/kanean";
 
 export const SITE_URL = "https://helpflux.com.br";
 
@@ -30,6 +31,12 @@ export const areas: Area[] = [
     name: "Eventos",
     description: "Venda de ingressos e controle de entrada.",
   },
+  {
+    id: "cidades",
+    name: "Cidades",
+    description:
+      "Problemas urbanos registrados por quem mora e acompanhados por quem resolve.",
+  },
 ];
 
 /** Ordem da vitrine */
@@ -40,6 +47,7 @@ export const products: Product[] = [
   treinaedu,
   beautymetrics,
   taketicket,
+  kanean,
 ];
 
 export function productsByArea(area: AreaId) {

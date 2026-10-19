@@ -2,7 +2,7 @@ import type { StaticImageData } from "next/image";
 
 export type Platform = "web" | "ios" | "android";
 
-export type AreaId = "hospitalidade" | "educacao" | "beleza" | "eventos";
+export type AreaId = "hospitalidade" | "educacao" | "beleza" | "eventos" | "cidades";
 
 export interface Area {
   id: AreaId;

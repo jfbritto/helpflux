@@ -23,8 +23,8 @@ export default function Hero() {
             <p className="text-lg md:text-xl text-muted max-w-2xl mb-10 leading-relaxed">
               Nascemos na prática, resolvendo problemas reais. Hoje mantemos
               produtos próprios para setores diferentes: do hotel à cozinha
-              profissional, do salão de beleza ao evento, passando pelo
-              treinamento das equipes.
+              profissional, do salão de beleza ao evento, do treinamento das
+              equipes aos problemas da rua.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
