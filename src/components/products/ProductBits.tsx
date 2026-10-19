@@ -107,7 +107,14 @@ export function CheckList({ items }: { items: string[] }) {
   );
 }
 
-/** Captura de celular numa moldura de aparelho */
+/**
+ * Captura de celular numa silhueta de iPhone, a mesma dos sites do Hotel em
+ * Dia, do TreinaEdu e do HelpCheck: tela 19,5:9, Dynamic Island, barra de
+ * status, botões laterais e a barrinha de baixo. As medidas são em cqw (a
+ * largura do próprio aparelho), então a moldura fica proporcional em qualquer
+ * tamanho, da vitrine ao celular sobreposto. A captura entra encaixada pelo
+ * topo; a que já traz a barra de status do aparelho não ganha outra.
+ */
 export function PhoneFrame({
   shot,
   priority = false,
@@ -116,29 +123,61 @@ export function PhoneFrame({
 }: {
   shot: Shot;
   priority?: boolean;
-  /** Versão menor, sobreposta à captura principal e cortada no topo */
+  /** Versão menor, sobreposta à captura principal */
   compact?: boolean;
   className?: string;
 }) {
   return (
     <figure
-      className={`${
-        compact
-          ? "rounded-[1.15rem] border-[4px] sm:rounded-[1.6rem] sm:border-[6px]"
-          : "mx-auto w-full max-w-[260px] rounded-[2.2rem] border-[7px]"
-      } overflow-hidden border-foreground bg-foreground shadow-2xl shadow-primary/25 ${className}`}
+      className={`@container relative ${
+        compact ? "w-full" : "mx-auto w-full max-w-[280px]"
+      } ${className}`}
     >
-      <Image
-        src={shot.src}
-        alt={shot.alt}
-        sizes={compact ? "180px" : "260px"}
-        {...loadProps(priority)}
-        className={`h-auto w-full ${
-          compact
-            ? "aspect-[9/16] rounded-[0.85rem] object-cover object-top sm:rounded-[1.15rem]"
-            : "rounded-[1.7rem]"
-        }`}
-      />
+      <div className="relative rounded-[18cqw] bg-foreground p-[3.8cqw] shadow-2xl shadow-primary/30 ring-1 ring-black/20">
+        {/* Botões laterais: silêncio e volume à esquerda, ligar à direita */}
+        <span aria-hidden="true" className="absolute top-[18%] -left-[1cqw] h-[9.5cqw] w-[1.1cqw] rounded-l bg-foreground" />
+        <span aria-hidden="true" className="absolute top-[27%] -left-[1cqw] h-[16cqw] w-[1.1cqw] rounded-l bg-foreground" />
+        <span aria-hidden="true" className="absolute top-[37%] -left-[1cqw] h-[16cqw] w-[1.1cqw] rounded-l bg-foreground" />
+        <span aria-hidden="true" className="absolute top-[30%] -right-[1cqw] h-[22cqw] w-[1.1cqw] rounded-r bg-foreground" />
+
+        <div className="relative flex aspect-[9/19.5] flex-col overflow-hidden rounded-[14.5cqw] bg-white">
+          {shot.comBarraDeStatus ? (
+            /* A captura já tem a barra de status: só a Dynamic Island por cima */
+            <span aria-hidden="true" className="absolute top-[2.8cqw] left-1/2 z-10 h-[8.3cqw] w-[30cqw] -translate-x-1/2 rounded-full bg-black" />
+          ) : (
+            <div
+              aria-hidden="true"
+              className="relative flex h-[12.4cqw] shrink-0 items-center justify-between px-[9.6cqw] text-[4.2cqw] font-semibold text-foreground"
+            >
+              <span>9:41</span>
+              <span className="absolute top-[2.8cqw] left-1/2 h-[8.3cqw] w-[30cqw] -translate-x-1/2 rounded-full bg-black" />
+              <span className="flex items-center gap-[1.4cqw]">
+                <svg className="h-[3.4cqw] w-[5.5cqw]" viewBox="0 0 16 10" fill="currentColor">
+                  <rect x="0" y="7" width="3" height="3" rx="0.7" />
+                  <rect x="4.3" y="5" width="3" height="5" rx="0.7" />
+                  <rect x="8.6" y="2.5" width="3" height="7.5" rx="0.7" />
+                  <rect x="12.9" y="0" width="3" height="10" rx="0.7" />
+                </svg>
+                <svg className="h-[4.1cqw] w-[6.9cqw]" viewBox="0 0 22 12" fill="none" stroke="currentColor">
+                  <rect x="0.5" y="0.5" width="18" height="11" rx="3" />
+                  <rect x="2.5" y="2.5" width="12" height="7" rx="1.5" fill="currentColor" stroke="none" />
+                  <path d="M20.5 4.5v3" strokeLinecap="round" />
+                </svg>
+              </span>
+            </div>
+          )}
+          <Image
+            src={shot.src}
+            alt={shot.alt}
+            sizes={compact ? "180px" : "280px"}
+            {...loadProps(priority)}
+            className="block min-h-0 w-full flex-1 object-cover object-top"
+          />
+          <div aria-hidden="true" className="flex h-[8.3cqw] shrink-0 items-center justify-center bg-white">
+            <span className="h-[1.4cqw] w-[38cqw] rounded-full bg-foreground" />
+          </div>
+        </div>
+      </div>
     </figure>
   );
 }
