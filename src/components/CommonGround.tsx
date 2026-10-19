@@ -18,7 +18,7 @@ const items = [
   {
     icon: ReceiptIcon,
     title: "Cobrança e nota fiscal integradas",
-    text: "A assinatura é cobrada de forma recorrente pelo Asaas, com boleto, Pix ou cartão, conforme o produto. No Hotel em Dia, no HelpDiet e no TreinaEdu, a nota fiscal eletrônica sai pelo próprio sistema, ligada ao pagamento.",
+    text: "A assinatura é cobrada de forma recorrente pelo Asaas, com boleto, Pix ou cartão, conforme o produto. No Hotel em Dia, no HelpDiet e no TreinaEdu, a nota fiscal eletrônica sai pelo próprio sistema, ligada à cobrança.",
     usedIn: ["Hotel em Dia", "HelpDiet", "TreinaEdu", "HelpCheck", "BeautyMetrics"],
   },
   {
