@@ -27,7 +27,7 @@ jobs:
       - name: Clean unnecessary files
         run: |
           cd out
-          find . -name "*.txt" -delete
+          find . -name "*.txt" ! -name "robots.txt" -delete
           find . -name "*.map" -delete
 
       - name: Create deploy artifact

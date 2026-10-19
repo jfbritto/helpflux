@@ -1,128 +1,187 @@
 import SectionLabel from "./SectionLabel";
+import {
+  areas,
+  emDesenvolvimento,
+  productPath,
+  products,
+  productsByArea,
+} from "@/data/products";
+import type { Product } from "@/data/types";
+import {
+  Chips,
+  CheckList,
+  ExternalButton,
+  InternalButton,
+  PlatformBadges,
+  ProductLogo,
+  ProductVisual,
+  hostOf,
+} from "./products/ProductBits";
 
-const products = [
-  {
-    name: "HelpDiet",
-    tagline: "Segurança alimentar digital",
-    description:
-      "Plataforma para nutricionistas e cozinhas profissionais. Fichas técnicas, controle de validade, planilhas automáticas e rastreabilidade completa dos alimentos.",
-    href: "https://helpdiet.com.br",
-    icon: (
-      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-    ),
-    segments: ["Nutricionistas", "Cozinhas industriais", "Hotéis"],
-  },
-  {
-    name: "BeautyMetrics",
-    tagline: "Gestão financeira para beleza",
-    description:
-      "Sistema de gestão financeira pensado para profissionais da beleza. Controle de caixa, agendamentos, relatórios e métricas do seu negócio em um só lugar.",
-    href: "https://beautymetrics.com.br",
-    icon: (
-      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-      </svg>
-    ),
-    segments: ["Salões de beleza", "Barbearias", "Clínicas estéticas"],
-  },
-  {
-    name: "TakeTicket",
-    tagline: "Organize. Venda. Gerencie.",
-    description:
-      "Plataforma completa de ingressos online. Criação de eventos, venda de tickets, check-in por QR Code e dashboard em tempo real para organizadores.",
-    href: "https://taketicket.com.br",
-    icon: (
-      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
-      </svg>
-    ),
-    segments: ["Produtores de eventos", "Casas de shows", "Festas"],
-  },
-  {
-    name: "TreinaEdu",
-    tagline: "Treine sua equipe. Certifique com segurança.",
-    description:
-      "Plataforma de treinamentos corporativos com videoaulas, quizzes, certificados automáticos e acompanhamento de progresso por equipe.",
-    href: "https://treinaedu.com.br",
-    icon: (
-      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-      </svg>
-    ),
-    segments: ["Empresas", "RH", "Educação corporativa"],
-  },
-];
+function ProductShowcase({
+  product,
+  reverse,
+}: {
+  product: Product;
+  reverse: boolean;
+}) {
+  const titleId = `produto-${product.slug}`;
+
+  return (
+    <article
+      aria-labelledby={titleId}
+      className="grid items-start gap-8 rounded-3xl border border-border bg-background p-5 sm:p-8 lg:grid-cols-2 lg:gap-14 lg:p-12"
+    >
+      <div className={`lg:sticky lg:top-28 ${reverse ? "lg:order-2" : ""}`}>
+        <ProductVisual product={product} />
+      </div>
+
+      <div>
+        <div className="mb-5 flex items-center gap-3.5">
+          <ProductLogo product={product} />
+          <div className="min-w-0">
+            <h4 id={titleId} className="text-xl font-semibold leading-tight">
+              {product.name}
+            </h4>
+            <p className="truncate text-sm text-muted">{hostOf(product.site)}</p>
+          </div>
+        </div>
+
+        <p className="mb-3 font-display text-xl font-semibold leading-snug tracking-tight sm:text-2xl">
+          {product.tagline}
+        </p>
+        <p className="mb-6 leading-relaxed text-muted">{product.summary}</p>
+
+        <CheckList items={product.highlights} />
+
+        <dl className="mt-7 grid gap-6 border-t border-border pt-6 sm:grid-cols-2">
+          <div>
+            <dt className="mb-2.5 text-xs font-semibold tracking-wider text-muted uppercase">
+              Para quem é
+            </dt>
+            <dd>
+              <Chips items={product.audience} />
+            </dd>
+          </div>
+          <div>
+            <dt className="mb-2.5 text-xs font-semibold tracking-wider text-muted uppercase">
+              Onde funciona
+            </dt>
+            <dd>
+              <PlatformBadges platforms={product.platforms} />
+              {product.platformNote && (
+                <p className="mt-2.5 text-xs leading-relaxed text-muted">
+                  {product.platformNote}
+                </p>
+              )}
+            </dd>
+          </div>
+        </dl>
+
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <InternalButton
+            href={productPath(product)}
+            ariaLabel={`Conhecer o produto ${product.name}`}
+          >
+            Conhecer o produto
+          </InternalButton>
+          <ExternalButton
+            href={product.site}
+            ariaLabel={`Acessar o site do ${product.name} (abre em nova aba)`}
+          >
+            Acessar o site
+          </ExternalButton>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 export default function Products() {
   return (
-    <section id="produtos" className="py-24 bg-surface">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <SectionLabel>Nossos Produtos</SectionLabel>
-          <h2 className="text-3xl md:text-4xl font-semibold mt-4 mb-4">
-            Soluções prontas para diferentes segmentos
+    <section id="produtos" className="scroll-mt-16 bg-surface py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mx-auto mb-10 max-w-3xl text-center">
+          <SectionLabel>Nossos produtos</SectionLabel>
+          <h2 className="mt-4 mb-4 text-3xl font-semibold md:text-4xl">
+            Software feito para o dia a dia de cada setor
           </h2>
-          <p className="text-muted text-lg">
-            Cada produto nasceu de uma dor real. Criamos, mantemos e evoluímos
-            plataformas SaaS que resolvem problemas específicos de cada mercado.
+          <p className="text-lg text-muted">
+            São {products.length} produtos próprios, cada um focado num problema
+            específico. Veja o que cada um faz, para quem foi feito e onde
+            funciona.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {products.map((product) => (
-            <a
-              key={product.name}
-              href={product.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group p-8 rounded-3xl bg-background border border-border hover:border-foreground/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
-            >
-              <div className="flex items-start gap-4 mb-5">
-                <div className="w-14 h-14 rounded-2xl border-2 border-foreground text-foreground flex items-center justify-center shrink-0 group-hover:bg-foreground group-hover:text-white transition-colors duration-300">
-                  {product.icon}
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold">{product.name}</h3>
-                  <p className="text-sm text-foreground/70 font-medium">
-                    {product.tagline}
-                  </p>
-                </div>
-              </div>
-
-              <p className="text-muted leading-relaxed text-sm mb-5">
-                {product.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2">
-                {product.segments.map((seg) => (
-                  <span
-                    key={seg}
-                    className="px-3 py-1 bg-surface text-muted text-xs rounded-full border border-border"
-                  >
-                    {seg}
+        <nav aria-label="Áreas dos produtos" className="mb-4">
+          <ul className="flex flex-wrap justify-center gap-2">
+            {areas.map((area) => (
+              <li key={area.id}>
+                <a
+                  href={`#area-${area.id}`}
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:border-foreground/40"
+                >
+                  {area.name}
+                  <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-foreground px-1.5 text-[11px] font-semibold text-white">
+                    {productsByArea(area.id).length}
                   </span>
-                ))}
-              </div>
+                </a>
+              </li>
+            ))}
+            <li>
+              <a
+                href="#em-desenvolvimento"
+                className="inline-flex min-h-11 items-center rounded-full border border-dashed border-foreground/30 px-4 text-sm font-medium text-muted transition-colors hover:border-foreground/50 hover:text-foreground"
+              >
+                Em desenvolvimento
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-              <div className="mt-6 flex items-center gap-1 text-sm font-semibold text-foreground">
-                Acessar plataforma
-                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </a>
-          ))}
-        </div>
+        {areas.map((area, i) => (
+          <div
+            key={area.id}
+            id={`area-${area.id}`}
+            className="mt-14 scroll-mt-24 md:mt-20"
+          >
+            <header className="mb-6 flex flex-col gap-1 border-b border-border pb-5 md:mb-8">
+              <span className="font-display text-sm font-semibold text-muted">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="text-2xl font-semibold md:text-3xl">{area.name}</h3>
+              <p className="text-muted">{area.description}</p>
+            </header>
 
-        {/* Em breve */}
-        <div className="mt-8 p-6 rounded-3xl border-2 border-dashed border-foreground/20 text-center">
-          <p className="text-muted text-sm">
-            <span className="text-foreground font-semibold">Em breve:</span>{" "}
-            novos produtos em desenvolvimento. Estamos sempre criando
-            soluções para novos segmentos.
-          </p>
+            <div className="space-y-6 md:space-y-8">
+              {productsByArea(area.id).map((product) => (
+                <ProductShowcase
+                  key={product.slug}
+                  product={product}
+                  reverse={products.indexOf(product) % 2 === 1}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <div
+          id="em-desenvolvimento"
+          className="mt-14 scroll-mt-24 rounded-3xl border-2 border-dashed border-foreground/20 p-6 sm:p-10 md:mt-20"
+        >
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-12">
+            <div className="md:w-1/3">
+              <span className="inline-flex items-center gap-2 rounded-full bg-foreground px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase">
+                <span className="h-1.5 w-1.5 rounded-full bg-white" aria-hidden="true" />
+                Em desenvolvimento
+              </span>
+              <h3 className="mt-4 text-2xl font-semibold">{emDesenvolvimento.name}</h3>
+              <p className="text-sm text-muted">{emDesenvolvimento.area}</p>
+            </div>
+            <p className="leading-relaxed text-muted md:flex-1">
+              {emDesenvolvimento.description}
+            </p>
+          </div>
         </div>
       </div>
     </section>

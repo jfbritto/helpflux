@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LegalLayout from "@/components/LegalLayout";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/termos-de-uso/" },
   title: "Termos de Uso | HelpFlux",
   description: "Termos de uso do site e serviços da HelpFlux Soluções em Tecnologia.",
 };

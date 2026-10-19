@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SectionLabel from "./SectionLabel";
 
 const values = [
@@ -27,7 +28,7 @@ export default function About() {
   return (
     <section id="sobre" className="relative py-24 overflow-hidden">
       <div className="absolute inset-0 dot-grid fade-edges" />
-      <div className="max-w-7xl mx-auto px-6 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left */}
           <div>
@@ -38,14 +39,12 @@ export default function About() {
             </h2>
             <p className="text-muted text-lg leading-relaxed mb-6">
               Tudo começou com o{" "}
-              <a
-                href="https://helpdiet.com.br"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/produtos/helpdiet/"
                 className="text-foreground font-semibold underline decoration-2 underline-offset-4 decoration-foreground/30 hover:decoration-foreground transition-colors"
               >
                 HelpDiet
-              </a>
+              </Link>
               , uma plataforma de segurança dos alimentos para
               nutricionistas e cozinhas profissionais. Vimos de perto como
               processos manuais desperdiçam tempo e energia de quem só quer
