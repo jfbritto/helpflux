@@ -37,9 +37,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const { metaTitle: title, metaDescription: description } = product.page;
   const path = productPath(product);
-  // Cartão de compartilhamento gerado a partir da logo, da frase e da captura principal
+  // Cartão de compartilhamento gerado a partir da logo, da frase e da captura principal.
+  // O ?v= muda quando o cartão muda: o /og fica 180 dias em cache (e nas redes sociais).
   const image = {
-    url: `/og/${product.slug}.jpg`,
+    url: `/og/${product.slug}.jpg?v=20261019`,
     width: 1200,
     height: 630,
     alt: `${product.name}: ${product.tagline}`,
