@@ -2,10 +2,10 @@ import { FlowDots, LogoSymbol } from "./Logo";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-[100svh] flex items-center overflow-hidden">
       <div className="absolute inset-0 dot-grid fade-edges" />
 
-      <div className="max-w-7xl mx-auto px-6 pt-32 pb-20 relative z-10 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-32 pb-20 relative z-10 w-full">
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-16 items-center">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-surface border border-border mb-8">
@@ -15,15 +15,16 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.08] mb-6">
+            <h1 className="text-[2.6rem] sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.08] mb-6">
               Criamos SaaS que{" "}
               <span className="highlight">simplificam negócios</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted max-w-2xl mb-10 leading-relaxed">
               Nascemos na prática, resolvendo problemas reais. Hoje mantemos
-              produtos próprios que otimizam o fluxo de empresas em diferentes
-              segmentos: da cozinha ao palco, da clínica à sala de aula.
+              produtos próprios para setores diferentes: do hotel à cozinha
+              profissional, do salão de beleza ao evento, passando pelo
+              treinamento das equipes.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
