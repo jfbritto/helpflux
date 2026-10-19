@@ -41,6 +41,11 @@ server {
         deny all;
     }
 
+    # robots.txt é público; os outros .txt e .map, não
+    location = /robots.txt {
+        try_files $uri =404;
+    }
+
     location ~ \.(txt|map)$ {
         deny all;
     }

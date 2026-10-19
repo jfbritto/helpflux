@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LegalLayout from "@/components/LegalLayout";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/politica-de-privacidade/" },
   title: "Política de Privacidade | HelpFlux",
   description: "Política de privacidade e proteção de dados da HelpFlux Soluções em Tecnologia.",
 };

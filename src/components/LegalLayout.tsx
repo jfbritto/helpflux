@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Logo from "./Logo";
 
 export default function LegalLayout({
@@ -14,15 +15,15 @@ export default function LegalLayout({
       {/* Header */}
       <header className="border-b border-border bg-surface">
         <div className="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between">
-          <a href="/">
+          <Link href="/" aria-label="HelpFlux, página inicial">
             <Logo size={34} />
-          </a>
-          <a
+          </Link>
+          <Link
             href="/"
-            className="text-sm text-muted hover:text-foreground transition-colors"
+            className="inline-flex min-h-11 items-center text-sm text-muted hover:text-foreground transition-colors"
           >
             Voltar ao site
-          </a>
+          </Link>
         </div>
       </header>
 

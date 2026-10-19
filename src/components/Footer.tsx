@@ -1,4 +1,6 @@
+import Link from "next/link";
 import Logo from "./Logo";
+import { productPath, products } from "@/data/products";
 
 export default function Footer() {
   return (
@@ -14,7 +16,7 @@ export default function Footer() {
               SaaS House que cria produtos digitais para diferentes segmentos.
               Cada plataforma nasce de um problema real e evolui com quem usa.
             </p>
-            <div className="text-xs text-white/40 space-y-1">
+            <div className="text-xs text-white/60 space-y-1">
               <p>HELPFLUX SOLUÇÕES EM TECNOLOGIA LTDA</p>
               <p>CNPJ: 58.063.432/0001-21</p>
             </div>
@@ -22,25 +24,18 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">
+            <h2 className="text-white font-semibold text-sm mb-4 tracking-normal">
               Produtos
-            </h4>
-            <ul className="space-y-2.5">
-              {[
-                { label: "HelpDiet", href: "https://helpdiet.com.br" },
-                { label: "BeautyMetrics", href: "https://beautymetrics.com.br" },
-                { label: "TakeTicket", href: "https://taketicket.com.br" },
-                { label: "TreinaEdu", href: "https://treinaedu.com.br" },
-              ].map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm hover:text-white transition-colors duration-200"
+            </h2>
+            <ul className="space-y-1">
+              {products.map((p) => (
+                <li key={p.slug}>
+                  <Link
+                    href={productPath(p)}
+                    className="inline-flex min-h-11 items-center text-sm transition-colors duration-200 hover:text-white md:min-h-9"
                   >
-                    {link.label}
-                  </a>
+                    {p.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -48,14 +43,14 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">
+            <h2 className="text-white font-semibold text-sm mb-4 tracking-normal">
               Contato
-            </h4>
-            <ul className="space-y-3 text-sm">
+            </h2>
+            <ul className="space-y-1 text-sm">
               <li>
                 <a
                   href="mailto:contato@helpflux.com.br"
-                  className="hover:text-white transition-colors duration-200"
+                  className="inline-flex min-h-11 items-center hover:text-white transition-colors duration-200"
                 >
                   contato@helpflux.com.br
                 </a>
@@ -65,12 +60,12 @@ export default function Footer() {
                   href="https://wa.me/5528999743099"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors duration-200"
+                  className="inline-flex min-h-11 items-center hover:text-white transition-colors duration-200"
                 >
                   (28) 99974-3099
                 </a>
               </li>
-              <li className="pt-1 text-white/50">
+              <li className="pt-1 text-white/60">
                 Rua Henrique João Júlio Kuster, 452
                 <br />
                 Santa Maria de Jetibá/ES
@@ -83,32 +78,32 @@ export default function Footer() {
 
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
-            <p className="text-xs text-white/40">
+            <p className="text-xs text-white/60">
               &copy; {new Date().getFullYear()} HelpFlux Soluções em Tecnologia
               LTDA. Todos os direitos reservados.
             </p>
             <div className="flex gap-3 text-xs">
-              <a
+              <Link
                 href="/termos-de-uso/"
-                className="text-white/40 hover:text-white transition-colors"
+                className="inline-flex min-h-11 items-center text-white/60 hover:text-white transition-colors"
               >
                 Termos de Uso
-              </a>
-              <span className="text-white/20">|</span>
-              <a
+              </Link>
+              <span className="text-white/40">|</span>
+              <Link
                 href="/politica-de-privacidade/"
-                className="text-white/40 hover:text-white transition-colors"
+                className="inline-flex min-h-11 items-center text-white/60 hover:text-white transition-colors"
               >
                 Política de Privacidade
-              </a>
+              </Link>
             </div>
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-1">
             <a
               href="https://wa.me/5528999743099"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="inline-flex h-11 w-11 items-center justify-center hover:text-white transition-colors"
               aria-label="WhatsApp"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -118,7 +113,7 @@ export default function Footer() {
             </a>
             <a
               href="mailto:contato@helpflux.com.br"
-              className="hover:text-white transition-colors"
+              className="inline-flex h-11 w-11 items-center justify-center hover:text-white transition-colors"
               aria-label="Email"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -129,7 +124,7 @@ export default function Footer() {
               href="https://instagram.com/helpflux"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="inline-flex h-11 w-11 items-center justify-center hover:text-white transition-colors"
               aria-label="Instagram"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
