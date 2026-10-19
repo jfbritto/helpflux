@@ -14,8 +14,10 @@ export interface Area {
 export interface Shot {
   src: StaticImageData;
   alt: string;
-  /** desktop vai numa moldura de navegador; mobile, numa moldura de celular */
+  /** desktop vai numa moldura de navegador; mobile, numa moldura de iPhone */
   kind: "desktop" | "mobile";
+  /** A captura de celular já traz a barra de status do aparelho (print do app): a moldura não desenha outra */
+  comBarraDeStatus?: boolean;
 }
 
 export interface Feature {

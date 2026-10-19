@@ -45,6 +45,7 @@ export const helpcheck: Product = {
     src: checklist,
     alt: "Checklist da RDC 216/2004 no celular, com nota parcial e as opções C, PC, NC e NA",
     kind: "mobile",
+    comBarraDeStatus: true,
   },
   page: {
     metaTitle:
@@ -66,6 +67,7 @@ export const helpcheck: Product = {
           src: checklist,
           alt: "Itens do checklist com as respostas C, PC, NC e NA e botões de observação e foto",
           kind: "mobile",
+          comBarraDeStatus: true,
         },
       },
       {
