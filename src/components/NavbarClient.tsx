@@ -8,6 +8,7 @@ import type { NavProduct } from "./Navbar";
 
 const navLinks = [
   { label: "Em comum", href: "/#em-comum" },
+  { label: "Sob medida", href: "/#sob-medida" },
   { label: "Sobre", href: "/#sobre" },
   { label: "Contato", href: "/#contato" },
 ];

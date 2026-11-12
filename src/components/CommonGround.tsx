@@ -30,7 +30,7 @@ const items = [
   {
     icon: ShieldIcon,
     title: "Segurança e LGPD",
-    text: "Cada produto publica a sua política de privacidade, conforme a LGPD, e funciona sempre por conexão segura. No Hotel em Dia, no HelpDiet, no TreinaEdu, no HelpCheck e no BeautyMetrics, os dados de cada empresa ficam isolados dos das outras.",
+    text: "Cada produto publica a sua política de privacidade, conforme a LGPD, e funciona sempre por conexão segura. No Hotel em Dia, no HelpDiet, no TreinaEdu, no HelpCheck, no BeautyMetrics e no Nutriii, os dados de cada empresa ficam isolados dos das outras.",
     usedIn: ["Todos os produtos"],
   },
   {

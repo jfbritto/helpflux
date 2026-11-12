@@ -5,7 +5,7 @@ const values = [
   {
     title: "Produtos próprios",
     description:
-      "Não fazemos projetos sob demanda. Criamos e mantemos nossos próprios SaaS, com dedicação total.",
+      "Criamos e mantemos nossos próprios SaaS. Quando fazemos um sistema sob medida, ele recebe o mesmo cuidado.",
   },
   {
     title: "Nascidos na prática",

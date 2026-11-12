@@ -2,7 +2,7 @@ import type { StaticImageData } from "next/image";
 
 export type Platform = "web" | "ios" | "android";
 
-export type AreaId = "hospitalidade" | "educacao" | "beleza" | "eventos" | "cidades";
+export type AreaId = "hospitalidade" | "saude" | "educacao" | "beleza" | "cidades";
 
 export interface Area {
   id: AreaId;
@@ -29,6 +29,23 @@ export interface Feature {
 export interface Faq {
   q: string;
   a: string;
+}
+
+/** Sistema feito sob medida para um cliente: aparece na seção "Sob medida", sem página própria */
+export interface CustomProject {
+  slug: string;
+  name: string;
+  /** Segmento do cliente, numa palavra ou duas */
+  segment: string;
+  site: string;
+  /** O que o sistema faz, em uma ou duas frases */
+  summary: string;
+  /** O que foi entregue, de 3 a 5 itens */
+  delivered: string[];
+  platforms: Platform[];
+  platformNote?: string;
+  /** Captura de uma página pública do cliente */
+  shot: Shot;
 }
 
 export interface Product {

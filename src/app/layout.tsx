@@ -18,9 +18,9 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const title = "HelpFlux | SaaS para hotéis, cozinhas, treinamento, beleza, eventos e cidades";
+const title = "HelpFlux | SaaS para hotéis, cozinhas, nutricionistas, treinamento, beleza e cidades";
 const description =
-  "A HelpFlux cria e mantém Hotel em Dia, HelpDiet, HelpCheck, TreinaEdu, BeautyMetrics, TakeTicket e Kanean: software para hotelaria, segurança dos alimentos, treinamento, beleza, eventos e problemas urbanos.";
+  "A HelpFlux cria e mantém Hotel em Dia, HelpDiet, HelpCheck, Nutriii, TreinaEdu, BeautyMetrics e Kanean: software para hotelaria, segurança dos alimentos, consultórios de nutrição, treinamento, beleza e problemas urbanos. Também desenvolve sistemas sob medida.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://helpflux.com.br"),
@@ -47,9 +47,10 @@ export const metadata: Metadata = {
     "helpdiet",
     "helpcheck",
     "treinaedu",
+    "nutriii",
     "beautymetrics",
-    "taketicket",
     "kanean",
+    "sistema sob medida",
     "software como serviço",
   ],
 };

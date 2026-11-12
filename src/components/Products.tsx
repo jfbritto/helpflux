@@ -1,7 +1,6 @@
 import SectionLabel from "./SectionLabel";
 import {
   areas,
-  emDesenvolvimento,
   productPath,
   products,
   productsByArea,
@@ -128,14 +127,6 @@ export default function Products() {
                 </a>
               </li>
             ))}
-            <li>
-              <a
-                href="#em-desenvolvimento"
-                className="inline-flex min-h-11 items-center rounded-full border border-dashed border-foreground/30 px-4 text-sm font-medium text-muted transition-colors hover:border-foreground/50 hover:text-foreground"
-              >
-                Em desenvolvimento
-              </a>
-            </li>
           </ul>
         </nav>
 
@@ -164,25 +155,6 @@ export default function Products() {
             </div>
           </div>
         ))}
-
-        <div
-          id="em-desenvolvimento"
-          className="mt-14 scroll-mt-24 rounded-3xl border-2 border-dashed border-foreground/20 p-6 sm:p-10 md:mt-20"
-        >
-          <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-12">
-            <div className="md:w-1/3">
-              <span className="inline-flex items-center gap-2 rounded-full bg-foreground px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase">
-                <span className="h-1.5 w-1.5 rounded-full bg-white" aria-hidden="true" />
-                Em desenvolvimento
-              </span>
-              <h3 className="mt-4 text-2xl font-semibold">{emDesenvolvimento.name}</h3>
-              <p className="text-sm text-muted">{emDesenvolvimento.area}</p>
-            </div>
-            <p className="leading-relaxed text-muted md:flex-1">
-              {emDesenvolvimento.description}
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
