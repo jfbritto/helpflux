@@ -2,9 +2,9 @@ import type { Area, AreaId, Product } from "./types";
 import { hotelEmDia } from "./produtos/hotel-em-dia";
 import { helpdiet } from "./produtos/helpdiet";
 import { helpcheck } from "./produtos/helpcheck";
+import { nutriii } from "./produtos/nutriii";
 import { treinaedu } from "./produtos/treinaedu";
 import { beautymetrics } from "./produtos/beautymetrics";
-import { taketicket } from "./produtos/taketicket";
 import { kanean } from "./produtos/kanean";
 
 export const SITE_URL = "https://helpflux.com.br";
@@ -17,6 +17,12 @@ export const areas: Area[] = [
       "Documentos, auditorias e boas práticas de hotéis, cozinhas e serviços de alimentação.",
   },
   {
+    id: "saude",
+    name: "Saúde e nutrição",
+    description:
+      "O consultório do nutricionista clínico, da agenda ao plano alimentar.",
+  },
+  {
     id: "educacao",
     name: "Educação corporativa",
     description: "Treinamentos obrigatórios, NRs e certificados das equipes.",
@@ -27,11 +33,6 @@ export const areas: Area[] = [
     description: "Custo, preço e lucro dos serviços de salões e clínicas.",
   },
   {
-    id: "eventos",
-    name: "Eventos",
-    description: "Venda de ingressos e controle de entrada.",
-  },
-  {
     id: "cidades",
     name: "Cidades",
     description:
@@ -39,14 +40,14 @@ export const areas: Area[] = [
   },
 ];
 
-/** Ordem da vitrine */
+/** Ordem da vitrine (a mesma das áreas, para a alternância dos cartões seguir a página) */
 export const products: Product[] = [
   hotelEmDia,
   helpdiet,
   helpcheck,
+  nutriii,
   treinaedu,
   beautymetrics,
-  taketicket,
   kanean,
 ];
 
@@ -65,14 +66,3 @@ export function areaOf(product: Product) {
 export function productPath(product: Product) {
   return `/produtos/${product.slug}/`;
 }
-
-/*
- * Em desenvolvimento: aparece sem link, sem data e sem promessa.
- * Fonte: repositório nutriii (README.md, CLAUDE.md e a spec da plataforma).
- */
-export const emDesenvolvimento = {
-  name: "Nutriii",
-  area: "Saúde",
-  description:
-    "Sistema para o consultório do nutricionista clínico, com pacientes, agenda, prontuário, avaliação, plano alimentar, prescrições e financeiro num lugar só, e um app para o paciente acompanhar o plano e registrar o dia a dia.",
-};

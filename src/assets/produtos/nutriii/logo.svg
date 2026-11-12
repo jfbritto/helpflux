@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!--
+    Nutriii symbol: the app icon. A rounded tile (radius 115,
+    22.5%) with the brand diagonal gradient (brand-500 #8a59f6 to brand-700
+    #5d1cb6) and, in white, an "n" (Plus Jakarta Sans ExtraBold outline)
+    under the three dots of the wordmark, in the same arc (the middle one
+    higher).
+    Use it above 32px; at 32px and below use symbol-small.svg.
+    The <x-logo variant="symbol"> component inlines it, so every id is
+    prefixed with "nutriii-logo-" (the component makes them unique per
+    instance). public/apple-touch-icon.png and mail-logo.png are rendered
+    from it (resources/brand/generate-web-assets.mjs). See docs/BRAND.md.
+  -->
+  <defs><linearGradient id="nutriii-logo-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a59f6"/><stop offset="1" stop-color="#5d1cb6"/></linearGradient></defs>
+  <rect width="512" height="512" rx="115" fill="url(#nutriii-logo-bg)"/>
+  <path fill="#ffffff" d="M222.6 401L172.5 401L172.5 218.6L219.2 218.6L219.2 240.6Q225.6 228.9 237.3 222.3L237.3 222.3Q251.3 214.6 270.4 214.6L270.4 214.6Q291.1 214.6 306.6 223.3Q322.2 231.9 330.8 247.5Q339.5 263 339.5 283.7L339.5 283.7L339.5 401L289.4 401L289.4 294.4Q289.4 283.7 285.2 276Q281.1 268.4 273.5 264Q266 259.7 256 259.7L256 259.7Q246.3 259.7 238.6 264Q230.9 268.4 226.8 276Q222.6 283.7 222.6 294.4L222.6 294.4L222.6 401"/>
+  <circle cx="172.5" cy="157.8" r="25.1" fill="#ffffff"/>
+  <circle cx="256" cy="136.1" r="25.1" fill="#ffffff"/>
+  <circle cx="339.5" cy="157.8" r="25.1" fill="#ffffff"/>
+</svg>
